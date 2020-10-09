@@ -57,6 +57,20 @@
                     </div>
                     <!-- Comment Row -->
                 </div>
+
+                <div class="card-body">
+                    <h4 class="card-title m-b-0">Event Logo</h4>
+                </div>
+                <div class="comment-widgets scrollable">
+                    <!-- Comment Row -->
+                    <div class="d-flex flex-row comment-row m-t-0">
+                        <div class="comment-text w-100">
+                            <!-- <span class="m-b-15 d-block">{!!$get_event_details->event_headline!!}</span>      -->
+                            <img src="{{asset('/event_logos/' . $get_event_details->event_logo)}}" class="img-thumbnail" alt="Responsive image">
+                        </div>
+                    </div>
+                    <!-- Comment Row -->
+                </div>
             </div>
         </div>
         <div class="col-md-6">
@@ -102,6 +116,14 @@
                                 <i class="fa fa-gift w-30px m-t-5"></i>
                                 <div>
                                     <span class="font-bold">Reg. Start Date:-</span> {{$get_event_details->registration_end_date	}}
+                                </div>
+                            </div>
+                    </li>
+                    <li class="card-body border-top">
+                            <div class="d-flex no-block">
+                                <i class="fa fa-gift w-30px m-t-5"></i>
+                                <div>
+                                    <span class="font-bold">Event Price:-</span> ${{$get_event_details->event_price	}}
                                 </div>
                             </div>
                     </li>

@@ -32,6 +32,17 @@
                         @csrf     
                         <div class="card-body">
                             <div class="form-group row">
+                                <label for="event_category" class="col-sm-1 text-right control-label col-form-label">Event Category</label>
+                                <div class="col-sm-8">
+                                    <select name="event_category_id" id="event_category" class="form-control" value="{{ $get_event_details->event_category_id }}">
+                                        <option value="">Select Category</option>
+                                        @foreach($get_categories as $category)
+                                        <option value="{{ $category->id }}" {{ ($category->id == $get_event_details->event_category_id ? 'selected="selected"' : '') }}>{{ $category->category_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="event_name" class="col-sm-1 text-right control-label col-form-label">Event Name</label>
                                 <div class="col-sm-8">
                                     <input type="text" name="event_name" class="form-control" id="event_name" placeholder="Event Name Here" value="{{$get_event_details->event_name}}" >
@@ -57,6 +68,12 @@
                                 <label for="event_location" class="col-sm-1 text-right control-label col-form-label">Event Location</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" name="event_location" id="event_location" placeholder="Event Location Here" value="{{$get_event_details->event_location}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="event_price" class="col-sm-1 text-right control-label col-form-label">Event Price</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" min="0" name="event_price" id="event_price" placeholder="Event Price Here" value="{{$get_event_details->event_price}}">
                                 </div>
                             </div>
                             <div class="form-group row">

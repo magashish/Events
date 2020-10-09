@@ -6,7 +6,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Site Settings</h4>
+                        <h4 class="page-title">Category Management</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
@@ -28,25 +28,19 @@
     <!-- Start Page Content -->
         <!-- ============================================================== -->
                 <div class="card">
-                    <form class="form-horizontal" enctype="multipart/form-data" action="{{ route('admin.siteSetting.update') }}" id="profile-form" method="post">
+                    <form class="form-horizontal" enctype="multipart/form-data" action="{{ route('admin.add.category') }}" id="category-form" method="post">
                         @csrf     
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="stripe_s_key" class="col-sm-2 text-right control-label col-form-label">Stripe Secret Key:</label>
+                                <label for="category_name" class="col-sm-1 text-right control-label col-form-label">Category Name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="stripe_s_key" class="form-control" id="stripe_s_key" placeholder="Secret Key Here" value="{{ $site_setting->stripe_s_key }}">
+                                    <input type="text" name="category_name" class="form-control" id="category_name" placeholder="Category Name Here">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="stripe_p_key" class="col-sm-2 text-right control-label col-form-label">Stripe Publishable key:</label>
+                                <label for="category_image" class="col-sm-1 text-right control-label col-form-label">Category Image</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="stripe_p_key" id="stripe_p_key" placeholder="Publishable key Here" value="{{ $site_setting->stripe_p_key }}">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="google_key" class="col-sm-2 text-right control-label col-form-label">Google Key:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="google_key" id="google_key" placeholder="Google Key Here" value="{{ $site_setting->google_key }}">
+                                    <input type="file" class="form-control" name="category_image" id="category_image" placeholder="Category Image Here">
                                 </div>
                             </div>
                         </div>

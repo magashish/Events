@@ -6,7 +6,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Event Management</h4>
+            <h4 class="page-title">Category Management</h4>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -32,33 +32,29 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">View Events</h5>
+                    <h5 class="card-title">View Categories</h5>
                     <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>Sr.No</th>
-                                    <th>Category Id</th>
-                                    <th>Event Name</th>
-                                    <th>Event Date</th>
-                                    <th>Event Location</th>
-                                    <th>Event Headline</th>
+                                    <th>Category Name</th>
+                                    <th>Category Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($get_events as $key => $event)
+                                @foreach($get_categories as $key => $category)
                                 <tr>
                                     <td>{{$key + 1}}</td>
-                                    <td>{{$event->event_category_id}}</td>
-                                    <td>{{$event->event_name}}</td>
-                                    <td>{{$event->event_date}}</td>
-                                    <td>{{$event->event_location}}</td>
-                                    <td>{{$event->event_headline}}</td>
+                                    <td>{{$category->category_name}}</td>
                                     <td>
-                                        <a href={{url('/admin/view-event-details/'.$event->id)}}><i class="fas fa-eye" id="view-details" title="View Details"></i></a>&nbsp;&nbsp;
-                                        <a href={{url('/admin/edit-event/'.$event->id)}}><i class="far fa-edit" id="edit-event" title="Edit Event"></i></a>&nbsp;&nbsp;
-                                        <a href={{url('/admin/delete-event/'.$event->id)}}><i class="fas fa-trash" id="delete-event" title="Delete Event"></i></a>&nbsp;                                    </td>
+                                    <img src="{{asset('/category_images/' . $category->category_image)}}" style="width: 100px;" class="img-thumbnail" alt="Responsive image">
+                                    </td>
+                                    <td>
+                                        <a href={{url('/admin/edit-event-category/'.$category->id)}}><i class="far fa-edit" id="edit-event" title="Edit Event Category"></i></a>&nbsp;&nbsp;
+                                        <a href={{url('/admin/delete-event-category/'.$category->id)}}><i class="fas fa-trash" id="delete-user" title="Delete Event"></i></a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

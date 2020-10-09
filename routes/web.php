@@ -48,6 +48,10 @@ Route::prefix('admin')->group(function(){
     Route::any('/check-pswd','Admin\AdminController@checkPassword');
     Route::get('/site-settings','Admin\AdminController@siteSettings')->name('admin.siteSetting');
     Route::post('/update-site-settings','Admin\AdminController@updateSiteSettings')->name('admin.siteSetting.update');
-
+    Route::any('/add-event-category','Admin\EventController@addCategory')->name('admin.add.category');
+    Route::any('/edit-event-category/{id}','Admin\EventController@editEventCategory')->name('admin.edit.eventCategory'); 
+    Route::any('/update-event-category/{id}','Admin\EventController@updateEventCategory')->name('admin.update.eventCategory');    
+    Route::get('/view-event-category','Admin\EventController@viewCategory')->name('admin.view.category');
+    Route::any('/delete-event-category/{id}','Admin\EventController@deleteEventCategory')->name('admin.eventCategory.delete');
 
 });

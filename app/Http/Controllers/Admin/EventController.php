@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Event;
 use DB;
+use App\EventCategory;
 
 class EventController extends Controller
 {
@@ -17,16 +18,19 @@ class EventController extends Controller
 
     public function addEvent()
     {
-        return view('admin.addEvent');
+        $get_categories = EventCategory::all();
+        return view('admin.addEvent',compact('get_categories'));
     }
 
     public function storeEvent(Request $request)
     {
         $data = $request->all();
         $validator = Validator::make($request->all(), [
+            'event_category_id' => 'required',
             'event_name' => 'required',
             'event_logo' => 'required',
             'event_date' => 'required',
+            'event_price' => 'required',
             'event_location' => 'required',
             'event_details' => 'required',
             'event_headline' => 'required',
@@ -51,9 +55,11 @@ class EventController extends Controller
             $folderpath = 'http://'. $host .'/'.'event_logos/' . $unique_name;
             move_uploaded_file($data['event_logo'], "$path/$unique_name");
         }
+        $add_event->event_category_id = $data['event_category_id'];
         $add_event->event_name = $data['event_name'];
         $add_event->event_logo_url = $folderpath;
         $add_event->event_logo = $unique_name;
+        $add_event->event_price = $data['event_price'];
         $add_event->event_date = $data['event_date'];
         $add_event->event_location = $data['event_location'];
         $add_event->event_headline = $data['event_headline'];
@@ -88,7 +94,8 @@ class EventController extends Controller
     public function editEvent(Request $request,$id)
     {
         $get_event_details = Event::where('id',$id)->first();
-        return view('admin.editEvent',compact('get_event_details'));
+        $get_categories = EventCategory::all();
+        return view('admin.editEvent',compact('get_event_details','get_categories'));
     }
 
     public function updateEvent(Request $request,$id)
@@ -110,6 +117,7 @@ class EventController extends Controller
         $update_event = Event::find($id);
         $update_event->event_name = $data['event_name'];
         $update_event->event_location = $data['event_location'];
+        $update_event->event_price = $data['event_price'];
         $update_event->event_headline = $data['event_headline'];
         $update_event->event_date = $data['event_date'];
         if($file)
@@ -122,6 +130,87 @@ class EventController extends Controller
         $update_event->event_description = $data['event_details'];
         $update_event->save();
         return redirect()->back()->with('success','Event Updated Successfully');
+    }
+
+    public function addCategory(Request $request)
+    {
+        if($request->isMethod('post'))
+        {
+            $data = $request->all();
+            $validator = Validator::make($request->all(), [
+                'category_name' => 'required',
+                'category_image' => 'required'
+            ]);
+    
+            if ($validator->fails()) {
+                return redirect(route('admin.add.category'))->withInput()->withErrors($validator);
+            }
+            $add_category = new EventCategory();
+            $add_category->category_name = $data['category_name'];
+            if($request->file('category_image'))
+            {
+                $unique_name = uniqid().'.'.$data['category_image']->getClientOriginalExtension();
+                $host = request()->getHttpHost();
+                $path = public_path(). '/category_images/';
+
+                if (!is_dir(public_path('category_images/' ))) {
+                    mkdir(public_path('category_images/'), 0777, true);
+                }
+                $folderpath = 'http://'. $host .'/'.'category_images/' . $unique_name;
+                move_uploaded_file($data['category_image'], "$path/$unique_name");
+            }
+            $add_category->category_image = $unique_name;
+            $add_category->save();
+            return redirect()->route('admin.view.category');
+        }
+        return view('admin.addCategory');
+    }
+
+    public function viewCategory()
+    {
+        $get_categories = EventCategory::all();
+        return view('admin.viewCategory',compact('get_categories'));
+    }
+
+    public function deleteEventCategory(Request $request,$id)
+    {
+        DB::table('event_categories')->where([
+            'id' => $id
+        ])->delete();
+        return redirect()->back();
+    }
+
+    public function editEventCategory($id)
+    {
+        $get_category_details = EventCategory::where('id',$id)->first();
+        return view('admin.editCategory',compact('get_category_details'));
+    }
+
+    public function updateEventCategory(Request $request,$id)
+    {
+        $data = $request->all();
+        // dd($data);
+        $file = $request->file('category_image');
+        if($file)
+        {
+            $unique_name = uniqid().'.'.$data['category_image']->getClientOriginalExtension();
+            $host = request()->getHttpHost();
+            $path = public_path(). '/category_images/';
+
+            if (!is_dir(public_path('category_images/' ))) {
+                mkdir(public_path('category_images/'), 0777, true);
+            }
+            $folderpath = 'http://'. $host .'/'.'category_images/' . $unique_name;
+            move_uploaded_file($data['category_image'], "$path/$unique_name");
+        }
+        $update_category = EventCategory::find($id);
+        $update_category->category_name = $data['category_name'];
+        if($file)
+        {
+            $update_category->category_image = $unique_name;   
+        }
+        $update_category->save();
+        return redirect()->back()->with('success','Category Updated Successfully');
     }
 
 }
