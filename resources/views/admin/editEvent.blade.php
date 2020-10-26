@@ -58,10 +58,43 @@
                                     <input type="date" class="form-control" name="reg_end_date" id="reg_end_date" placeholder="Registration End Date" value="{{$get_event_details->registration_end_date}}" >
                                 </div>
                             </div>
+                            <?php 
+                                $start = strtotime('12:00 AM');
+                                $end   = strtotime('11:59 PM');
+                            ?>
                             <div class="form-group row">
                                 <label for="event_date" class="col-sm-1 text-right control-label col-form-label">Event Date</label>
                                 <div class="col-sm-8">
                                     <input type="date" class="form-control" name="event_date" id="event_date" placeholder="Event Date Here" value="{{$get_event_details->event_date}}" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="event_start_time" class="col-sm-1 text-right control-label col-form-label">Start Time</label>
+                                <div class="col-sm-4">
+                                    <select name="event_start_time" id="event_start_time" class="form-control" value="{{ $get_event_details->event_start_time }}">
+                                        <?php for($i = $start;$i<=$end;$i+=1800){ ?>  
+                                            <option value='<?php echo date('G:i', $i); ?>'><?php echo date('G:i', $i); ?></option>;
+                                        <?php } ?>
+                                    </select>    
+                                </div>
+                                <label for="event_end_time" class="col-sm-1 text-right control-label col-form-label">End Time</label>
+                                <div class="col-sm-4">
+                                    <select name="event_end_time" id="event_end_time" class="form-control" value="{{ $get_event_details->event_end_time }}">
+                                        <?php for($i = $start;$i<=$end;$i+=1800){ ?>  
+                                            <option value='<?php echo date('G:i', $i); ?>'><?php echo date('G:i', $i); ?></option>;
+                                        <?php } ?>
+                                    </select>   
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="timezone" class="col-sm-1 text-right control-label col-form-label">Select Timezone</label>
+                                <div class="col-sm-8">
+                                    <select name="timezone" id="timezone" class="form-control" value="{{ $get_event_details->timezone }}">
+                                        <option value="">Select Timezone</option>
+                                        @foreach($zones_array as $key => $zone)
+                                        <option value="{{ $zone['diff_from_GMT'] }}" {{ ($zone['diff_from_GMT'] == $get_event_details->timezone ? 'selected="selected"' : '') }}> ({{ $zone['diff_from_GMT'] }})  {{ $zone['zone'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -81,6 +114,19 @@
                                 <div class="col-sm-8">
                                     <input type="file" class="form-control" name="event_logo" id="event_logo" placeholder="Event Logo Here" value="{{$get_event_details->event_logo}}">
                                     <img src="{{asset('/event_logos/' . $get_event_details->event_logo)}}" style="width: 200px;" class="img-thumbnail" alt="Responsive image">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="event_waiver" class="col-sm-1 text-right control-label col-form-label">Upload Waiver</label>
+                                <div class="col-sm-8">
+                                <!-- <input type="file" class="form-control" accept="application/pdf" name="event_waiver" id="event_waiver" placeholder="Event Waiver Here" value="{{$get_event_details->event_waiver}}"> 
+                                @if($get_event_details['event_waiver'] != "")
+                                <h5 class="mb-2 mt-3"><strong>Current File-</strong></h5>
+                                    <a href="{{asset('/event_waivers/' . $get_event_details->event_waiver)}}"target="_blank"> {{$get_event_details->event_waiver}} </a>  
+                                    <a class="btn btn-primary btn-sm"  data-name="{{$get_event_details->event_waiver}}" id="remove-agreement" >Remove File</a>
+                                @endif -->
+                                    <input type="file" class="form-control"  accept="application/pdf" name="event_waiver" id="event_waiver" placeholder="Event Waiver Here" value="{{$get_event_details->event_waiver}}">
+                                    <!-- <img src="{{asset('/event_waivers/' . $get_event_details->event_waiver)}}" style="width: 200px;" class="img-thumbnail" alt="Responsive image"> -->
                                 </div>
                             </div>
                             <div class="form-group row">

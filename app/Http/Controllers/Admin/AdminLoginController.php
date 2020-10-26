@@ -21,7 +21,6 @@ class AdminLoginController extends Controller
 
     public function login(Request $request)
     {
-        // dd('in');
         // dd($request->email,$request->password);
     	Validator::make($request->all(), [
     		'email' => 'required|email',
@@ -33,10 +32,8 @@ class AdminLoginController extends Controller
                 'password' => $request->password
             ], 
                 $request->remember)) {
-                    // dd('hii');
                 return redirect()->route('admin.dashboard');
             } else {
-                // dd('hello');
                 return redirect()->route('admin.login');
             }
     }

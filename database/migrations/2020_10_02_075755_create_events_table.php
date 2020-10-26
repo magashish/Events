@@ -18,7 +18,11 @@ class CreateEventsTable extends Migration
             $table->integer('event_category_id');
             $table->string('event_name');
             $table->date('event_date');
+            $table->string('event_start_time');
+            $table->string('event_end_time');
             $table->string('event_price');
+            $table->string('event_waiver');
+            $table->string('timezone');
             $table->string('event_location');
             $table->string('event_logo');
             $table->string('event_logo_url');

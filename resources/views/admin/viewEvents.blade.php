@@ -58,7 +58,8 @@
                                     <td>
                                         <a href={{url('/admin/view-event-details/'.$event->id)}}><i class="fas fa-eye" id="view-details" title="View Details"></i></a>&nbsp;&nbsp;
                                         <a href={{url('/admin/edit-event/'.$event->id)}}><i class="far fa-edit" id="edit-event" title="Edit Event"></i></a>&nbsp;&nbsp;
-                                        <a href={{url('/admin/delete-event/'.$event->id)}}><i class="fas fa-trash" id="delete-event" title="Delete Event"></i></a>&nbsp;                                    </td>
+                                        <a href={{url('/admin/delete-event/'.$event->id)}}><i class="fas fa-trash" id="delete-event" title="Delete Event"></i></a>&nbsp;
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

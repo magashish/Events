@@ -59,6 +59,20 @@
                 </div>
 
                 <div class="card-body">
+                    <h4 class="card-title m-b-0">Event Waiver(Click To Open)</h4>
+                </div>
+                <div class="comment-widgets scrollable">
+                    <!-- Comment Row -->
+                    <div class="d-flex flex-row comment-row m-t-0">
+                        <div class="comment-text w-100">
+                            <!-- <span class="m-b-15 d-block">{!!$get_event_details->event_headline!!}</span>      -->
+                            <a href="{{asset('/event_waivers/' . $get_event_details->event_waiver)}}"target="_blank"> {{$get_event_details->event_waiver}} </a>  
+                        </div>
+                    </div>
+                    <!-- Comment Row -->
+                </div>
+
+                <div class="card-body">
                     <h4 class="card-title m-b-0">Event Logo</h4>
                 </div>
                 <div class="comment-widgets scrollable">
@@ -99,7 +113,31 @@
                             <div class="d-flex no-block">
                                 <i class="fa fa-gift w-30px m-t-5"></i>
                                 <div>
+                                    <span class="font-bold">Timezone:-</span> {{$get_event_details->timezone}}
+                                </div>
+                            </div>
+                    </li>
+                    <li class="card-body border-top">
+                            <div class="d-flex no-block">
+                                <i class="fa fa-gift w-30px m-t-5"></i>
+                                <div>
                                     <span class="font-bold">Event Date:-</span> {{$get_event_details->event_date}}
+                                </div>
+                            </div>
+                    </li>
+                    <li class="card-body border-top">
+                            <div class="d-flex no-block">
+                                <i class="fa fa-gift w-30px m-t-5"></i>
+                                <div>
+                                    <span class="font-bold">Event Start Time:-</span> {{$get_event_details->event_start_time}}
+                                </div>
+                            </div>
+                    </li>
+                    <li class="card-body border-top">
+                            <div class="d-flex no-block">
+                                <i class="fa fa-gift w-30px m-t-5"></i>
+                                <div>
+                                    <span class="font-bold">Event End Time:-</span> {{$get_event_details->event_end_time}}
                                 </div>
                             </div>
                     </li>

@@ -35,7 +35,10 @@ Route::prefix('admin')->group(function(){
     Route::get('/profile','Admin\AdminController@viewProfile')->name('admin.get.profile'); 
     Route::post('/update-profile','Admin\AdminController@updateProfile')->name('admin.profile.update');
     Route::get('/users','Admin\AdminController@viewUsers')->name('admin.users');    
+    Route::any('/add-user','Admin\AdminController@addUser')->name('admin.add.user'); 
     Route::any('/delete-user/{id}','Admin\AdminController@deleteUser')->name('admin.delete.user');
+    Route::any('/edit-user/{id}','Admin\AdminController@editUser')->name('admin.edit.user'); 
+    Route::any('/update-user/{id}','Admin\AdminController@updateUser')->name('admin.update.user');    
     Route::get('/add-event','Admin\EventController@addEvent')->name('admin.add.event');
     Route::post('/store-event','Admin\EventController@storeEvent')->name('admin.store.event');
     Route::get('/view-events','Admin\EventController@viewEvent')->name('admin.view.events');  
@@ -53,5 +56,8 @@ Route::prefix('admin')->group(function(){
     Route::any('/update-event-category/{id}','Admin\EventController@updateEventCategory')->name('admin.update.eventCategory');    
     Route::get('/view-event-category','Admin\EventController@viewCategory')->name('admin.view.category');
     Route::any('/delete-event-category/{id}','Admin\EventController@deleteEventCategory')->name('admin.eventCategory.delete');
+    Route::get('/view-cms','Admin\CmsController@viewCms')->name('admin.view.cms');
+    Route::any('/edit-cms/{id}','Admin\CmsController@editCms')->name('admin.edit.cms'); 
+
 
 });

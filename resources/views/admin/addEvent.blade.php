@@ -58,10 +58,43 @@
                                     <input type="date" class="form-control" name="reg_end_date" id="reg_end_date" placeholder="Registration End Date" >
                                 </div>
                             </div>
+                            <?php 
+                                $start = strtotime('12:00 AM');
+                                $end   = strtotime('11:59 PM');
+                            ?>
                             <div class="form-group row">
                                 <label for="event_date" class="col-sm-1 text-right control-label col-form-label">Event Date</label>
                                 <div class="col-sm-8">
                                     <input type="date" class="form-control" name="event_date" id="event_date" placeholder="Event Date Here" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="event_start_time" class="col-sm-1 text-right control-label col-form-label">Start Time</label>
+                                <div class="col-sm-4">
+                                    <select name="event_start_time" id="event_start_time" class="form-control">
+                                        <?php for($i = $start;$i<=$end;$i+=1800){ ?>  
+                                            <option value='<?php echo date('G:i', $i); ?>'><?php echo date('G:i', $i); ?></option>;
+                                        <?php } ?>
+                                    </select>    
+                                </div>
+                                <label for="event_end_time" class="col-sm-1 text-right control-label col-form-label">End Time</label>
+                                <div class="col-sm-4">
+                                    <select name="event_end_time" id="event_end_time" class="form-control">
+                                        <?php for($i = $start;$i<=$end;$i+=1800){ ?>  
+                                            <option value='<?php echo date('G:i', $i); ?>'><?php echo date('G:i', $i); ?></option>;
+                                        <?php } ?>
+                                    </select>   
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="timezone" class="col-sm-1 text-right control-label col-form-label">Select Timezone</label>
+                                <div class="col-sm-8">
+                                    <select name="timezone" id="timezone" class="form-control">
+                                        <option value="">Select Timezone</option>
+                                        @foreach($zones_array as $key => $zone)
+                                        <option value="{{ $zone['diff_from_GMT'] }}"> ({{ $zone['diff_from_GMT'] }})  {{ $zone['zone'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -80,8 +113,20 @@
                                 <label for="event_logo" class="col-sm-1 text-right control-label col-form-label">Event Logo</label>
                                 <div class="col-sm-8">
                                     <input type="file" class="form-control" name="event_logo" id="event_logo" placeholder="Event Logo Here">
+                                    </span><span><strong>(Max Size-10MB)</strong></span>
                                 </div>
                             </div>
+                            <br>
+                            <div class="form-group row">
+                            <!-- <input type="file" name="uploadfile" id="img" style="display:none;"/>
+                            <label for="img">Click me to upload image</label> -->
+                                <label for="event_waiver" class="col-sm-1 text-right control-label col-form-label">Upload Waiver</label>
+                                <div class="col-sm-8">
+                                    <input type="file" class="form-control" accept="application/pdf" name="event_waiver" id="event_waiver" placeholder="Set a liability waiver that must be digitally signed by the participant.">
+                                    <span><strong>(Only Pdf files accepted)</strong></span><span><strong>(Max Size-10MB)</strong></span>
+                                </div>
+                            </div>
+                            <br>
                             <div class="form-group row">
                                 <label for="event_headline" class="col-sm-1 text-right control-label col-form-label">Event Headline</label>
                                 <div class="col-sm-8">

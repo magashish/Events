@@ -5,7 +5,13 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/dashboard') }}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/users') }}" aria-expanded="false"><i class="fas fa-user"></i><span class="hide-menu">User Management</span></a></li>
+                <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/users') }}" aria-expanded="false"><i class="fas fa-user"></i><span class="hide-menu">User Management</span></a></li> -->
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-user"></i><span class="hide-menu">User Management </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                    <li class="sidebar-item"><a href="{{ url('/admin/add-user') }}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Add Users </span></a></li>
+                        <li class="sidebar-item"><a href="{{ url('/admin/users') }}" class="sidebar-link"><i class="mdi mdi-border-inside"></i><span class="hide-menu"> View Users </span></a></li>
+                    </ul>
+                </li>
                 <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="widgets.html" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Widgets</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="tables.html" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Tables</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="grid.html" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Full Width</span></a></li> -->
@@ -22,6 +28,7 @@
                     </ul>
                 </li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/site-settings') }}" aria-expanded="false"><i class="ti-settings m-r-5 m-l-5"></i><span class="hide-menu">Site Settings</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('/admin/view-cms') }}" aria-expanded="false"><i class="ti-settings m-r-5 m-l-5"></i><span class="hide-menu">Cms Management</span></a></li>
                 <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-buttons.html" aria-expanded="false"><i class="mdi mdi-relative-scale"></i><span class="hide-menu">Buttons</span></a></li> -->
                 <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-elements.html" aria-expanded="false"><i class="mdi mdi-pencil"></i><span class="hide-menu">Elements</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-move-resize-variant"></i><span class="hide-menu">Addons </span></a>

@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use App\Admin;
 use Auth;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use DB;
 use App\SiteSetting;
-use Hash;
+use Validator;
 
 class AdminController extends Controller
 {
@@ -141,6 +142,49 @@ class AdminController extends Controller
         $update_setting->save();
         return redirect()->back()->with('success','Site Settings Updated Successfully');
         
+    }
+
+    public function addUser(Request $request)
+    {
+        if($request->isMethod('post'))
+        {
+            // dd('in');
+            $data = $request->all();
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required|unique:users',
+                'password' => 'required|min:8'
+            ]);
+    
+            if ($validator->fails()) {
+                return redirect(route('admin.add.user'))->withInput()->withErrors($validator);
+            }
+           
+            $add_user = new User();
+            $add_user->name = $data['name'];
+            $add_user->email = $data['email'];
+            $add_user->password =  Hash::make($data['password']);
+            $add_user->save();
+            return redirect()->route('admin.users')->with('success','User Added Successfully');
+
+        }
+        return view('admin.addUser');
+    }
+
+    public function editUser(Request $request,$id)
+    {
+        $get_user_details = User::where('id',$id)->first();
+        return view('admin.editUser',compact('get_user_details'));
+    }
+
+    public function updateUser(Request $request,$id)
+    {
+        $data = $request->all();
+        $update_user = User::find($id);
+        $update_user->name = $data['name'];
+        $update_user->email = $data['email'];
+        $update_user->save();
+        return redirect()->back()->with('success','Event Updated Successfully');
     }
 
 }

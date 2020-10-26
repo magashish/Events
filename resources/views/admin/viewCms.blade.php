@@ -6,7 +6,7 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">User Management</h4>
+            <h4 class="page-title">CMS Management</h4>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
@@ -32,26 +32,25 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">View Users</h5>
+                    <h5 class="card-title">View CMS</h5>
                     <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Sr.No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Page Title</th>
+                                    <th>Page Image</th>
+                                    <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($get_users as $key => $user)
+                                @foreach($cms as $key => $row)
                                 <tr>
-                                    <td>{{$key + 1}}</td>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->email}}</td>
+                                    <td>{{$row->page_title}}</td>
+                                    <td><img src="{{asset('/cmsimages/'.$row->page_image1)}}" width="70px"></td>
+                                    <td>{{$row->created_at}}</td>
                                     <td>
-                                        <a href={{url('/admin/edit-user/'.$user->id)}}><i class="far fa-edit" id="edit-user" title="Edit User"></i></a>&nbsp;&nbsp;                                    
-                                        <a href={{url('/admin/delete-user/'.$user->id)}}><i class="fas fa-trash" id="delete-user" title="Delete User"></i></a>&nbsp;&nbsp;                                    </td>
+                                        <a href={{url('/admin/edit-cms/'.$row->id)}}><i class="far fa-edit" id="edit-cms-page" title="Edit Page"></i></a>&nbsp;&nbsp;
                                     </td>
                                 </tr>
                                 @endforeach
