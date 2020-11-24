@@ -9,13 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('Admin/assets/images/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('admin/assets/images/favicon.png') }}">
     <title>Matrix Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
 
-    <link href="{{ asset('Admin/assets/libs/flot/css/float-chart.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/libs/flot/css/float-chart.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="{{ asset('Admin/dist/css/style.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/dist/css/style.min.css') }}" rel="stylesheet">
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
     <!-- <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js "></script> -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,28 +35,28 @@
 
     @include('layouts.adminLayout.admin_footer')
     </div>
-    <script src="{{ asset('Admin/assets/libs/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('Admin/assets/libs/popper.js/dist/umd/popper.min.js') }}"></script>
-    <script src="{{ asset('Admin/assets/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('Admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="{{ asset('Admin/assets/extra-libs/sparkline/sparkline.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/popper.js/dist/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/extra-libs/sparkline/sparkline.js') }}"></script>
     <!--Wave Effects -->
-    <script src="{{ asset('Admin/dist/js/waves.js') }}"></script>
+    <script src="{{ asset('admin/dist/js/waves.js') }}"></script>
     <!--Menu sidebar -->
-    <script src="{{ asset('Admin/dist/js/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('admin/dist/js/sidebarmenu.js') }}"></script>
     <!--Custom JavaScript -->
-    <script src="{{ asset('Admin/dist/js/custom.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/js/custom.min.js') }}"></script>
     <!--This page JavaScript -->
     <!-- Charts js Files -->
-    <script src="{{ asset('Admin/assets/libs/flot/excanvas.js') }}"></script>
-    <script src="{{ asset('Admin/assets/libs/flot/jquery.flot.js') }}"></script>
-    <script src="{{ asset('Admin/assets/libs/flot/jquery.flot.pie.js') }}"></script>
-    <script src="{{ asset('Admin/assets/libs/flot/jquery.flot.time.js') }}"></script>
-    <script src="{{ asset('Admin/assets/libs/flot/jquery.flot.stack.js') }}"></script>
-    <script src="{{ asset('Admin/assets/libs/flot/jquery.flot.crosshair.js') }}"></script>
-    <script src="{{ asset('Admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
-    <script src="{{ asset('Admin/dist/js/pages/chart/chart-page-init.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot/excanvas.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot/jquery.flot.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot/jquery.flot.pie.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot/jquery.flot.time.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot/jquery.flot.stack.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot/jquery.flot.crosshair.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
+    <script src="{{ asset('admin/dist/js/pages/chart/chart-page-init.js') }}"></script>
 </div>
 </body>
 </html>

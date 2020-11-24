@@ -31,7 +31,7 @@
                     <form class="form-horizontal" enctype="multipart/form-data" action="{{ url('/admin/update-event/'.$get_event_details->id) }}" id="edit-event-form" method="post">
                         @csrf     
                         <div class="card-body">
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label for="event_category" class="col-sm-1 text-right control-label col-form-label">Event Category</label>
                                 <div class="col-sm-8">
                                     <select name="event_category_id" id="event_category" class="form-control" value="{{ $get_event_details->event_category_id }}">
@@ -41,7 +41,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="form-group row">
                                 <label for="event_name" class="col-sm-1 text-right control-label col-form-label">Event Name</label>
                                 <div class="col-sm-8">
@@ -63,9 +63,13 @@
                                 $end   = strtotime('11:59 PM');
                             ?>
                             <div class="form-group row">
-                                <label for="event_date" class="col-sm-1 text-right control-label col-form-label">Event Date</label>
-                                <div class="col-sm-8">
-                                    <input type="date" class="form-control" name="event_date" id="event_date" placeholder="Event Date Here" value="{{$get_event_details->event_date}}" >
+                                <label for="event_start_date" class="col-sm-1 text-right control-label col-form-label">Event Start Date</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control" name="event_start_date" id="event_start_date" placeholder="Event Start Date Here" value="{{$get_event_details->event_start_date}}" >
+                                </div>
+                                <label for="event_end_date" class="col-sm-1 text-right control-label col-form-label">Event End Date</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control" name="event_end_date" id="event_end_date" placeholder="Event End Date Here" value="{{$get_event_details->event_end_date}}" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -113,7 +117,7 @@
                                 <label for="event_logo" class="col-sm-1 text-right control-label col-form-label">Event Logo</label>
                                 <div class="col-sm-8">
                                     <input type="file" class="form-control" name="event_logo" id="event_logo" placeholder="Event Logo Here" value="{{$get_event_details->event_logo}}">
-                                    <img src="{{asset('/event_logos/' . $get_event_details->event_logo)}}" style="width: 200px;" class="img-thumbnail" alt="Responsive image">
+                                    <span><img src="{{asset('/event_logos/' . $get_event_details->event_logo)}}" style="width: 200px;" class="img-thumbnail" alt="Responsive image"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -141,6 +145,12 @@
                                 <textarea class="form-control" placeholder="Event Details Here" name="event_details" id="event_details">{{$get_event_details->event_description}}</textarea>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="event_schedule_details" class="col-sm-1 text-right control-label col-form-label">Event Schedule Details</label>
+                                <div class="col-sm-8">
+                                <textarea class="form-control" placeholder="Event Schedule Details Here" name="event_schedule_details" id="event_schedule_details">{{$get_event_details->event_schedule_details}}</textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="border-top">
                             <div class="card-body">
@@ -154,6 +164,10 @@
 
 <script>
    CKEDITOR.replace( 'event_details' );
+</script>
+
+<script>
+   CKEDITOR.replace( 'event_schedule_details' );
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>

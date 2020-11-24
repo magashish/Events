@@ -17,11 +17,13 @@ class AdminController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth:admin');
+       // $this->middleware('auth:admin');
+       $this->middleware('auth:admin');
     }
 
     public function index()
     {  
+        // dd('in');
         return view('admin.dashboard');
     }
 
@@ -138,6 +140,7 @@ class AdminController extends Controller
         $update_setting = SiteSetting::find($id);
         $update_setting->stripe_s_key = $data['stripe_s_key'];
         $update_setting->stripe_p_key = $data['stripe_p_key'];
+        $update_setting->service_fees = $data['service_fees'];
         $update_setting->google_key = $data['google_key'];
         $update_setting->save();
         return redirect()->back()->with('success','Site Settings Updated Successfully');
@@ -151,7 +154,8 @@ class AdminController extends Controller
             // dd('in');
             $data = $request->all();
             $validator = Validator::make($request->all(), [
-                'name' => 'required',
+                'first_name' => 'required',
+                'last_name' => 'required',
                 'email' => 'required|unique:users',
                 'password' => 'required|min:8'
             ]);
@@ -161,7 +165,8 @@ class AdminController extends Controller
             }
            
             $add_user = new User();
-            $add_user->name = $data['name'];
+            $add_user->first_name = $data['first_name'];
+            $add_user->last_name = $data['last_name'];
             $add_user->email = $data['email'];
             $add_user->password =  Hash::make($data['password']);
             $add_user->save();
@@ -181,7 +186,8 @@ class AdminController extends Controller
     {
         $data = $request->all();
         $update_user = User::find($id);
-        $update_user->name = $data['name'];
+        $update_user->first_name = $data['first_name'];
+        $update_user->last_name = $data['last_name'];
         $update_user->email = $data['email'];
         $update_user->save();
         return redirect()->back()->with('success','Event Updated Successfully');

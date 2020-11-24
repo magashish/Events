@@ -49,6 +49,12 @@
                                     <input type="text" class="form-control" name="google_key" id="google_key" placeholder="Google Key Here" value="{{ $site_setting->google_key }}">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="service_fees" class="col-sm-2 text-right control-label col-form-label">Service Fees:</label>
+                                <div class="col-sm-8">
+                                    <input type="number" class="form-control" name="service_fees" id="service_fees" placeholder="Service Fees Here" value="{{ $site_setting->service_fees }}">
+                                </div>
+                            </div>
                         </div>
                         <div class="border-top">
                             <div class="card-body">

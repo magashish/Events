@@ -15,11 +15,18 @@ class CreateCMSTable extends Migration
     {
         Schema::create('c_m_s', function (Blueprint $table) {
             $table->id();
-            $table->string('page_title');
-            $table->string('page_image1');
-            $table->string('page_image2');
-            $table->string('page_description');
-            $table->string('page_headline');
+            $table->string('page_title')->nullable();
+            $table->string('office_email')->nullable();
+            $table->string('office_address')->nullable();
+            $table->string('office_contact')->nullable();
+            $table->string('page_image1')->nullable();
+            $table->string('page_image2')->nullable();
+            $table->string('page_image3')->nullable();
+            $table->string('page_description')->nullable();
+            $table->string('short_headline')->nullable();
+            $table->string('primary_headline')->nullable();
+            $table->string('about_us_headline')->nullable();
+            $table->string('about_us_description')->nullable();
             $table->timestamps();
         });
     }

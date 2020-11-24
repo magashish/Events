@@ -47,7 +47,7 @@
                                 @foreach($get_users as $key => $user)
                                 <tr>
                                     <td>{{$key + 1}}</td>
-                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->first_name}} {{$user->last_name}} </td>
                                     <td>{{$user->email}}</td>
                                     <td>
                                         <a href={{url('/admin/edit-user/'.$user->id)}}><i class="far fa-edit" id="edit-user" title="Edit User"></i></a>&nbsp;&nbsp;                                    

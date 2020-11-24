@@ -40,7 +40,6 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -78,6 +77,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
         ],
+        'judges' => [
+            'driver' => 'eloquent',
+            'model' => App\Judge::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -111,6 +114,13 @@ return [
             'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
+            'throttle' => 60,
+        ],
+        'judges' => [
+            'provider' => 'judges',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
         ],
     ],
 

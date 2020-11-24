@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\Event;
+use App\EventDivision;
 use DB;
+use App\EventRegistrationType;
 use App\EventCategory;
 use DateTimeZone;
 use DateTime;
@@ -50,6 +52,7 @@ class EventController extends Controller
         //     'event_price' => 'required',
         //     'event_location' => 'required',
         //     'event_details' => 'required',
+        //      'event_schedule_details' => 'required',
         //     'event_headline' => 'required',
         //     'reg_start_date' => 'required',
         //     'reg_end_date' => 'required'
@@ -85,7 +88,7 @@ class EventController extends Controller
             $folderpath2 = 'http://'. $host2 .'/'.'event_waivers/' . $unique_name2;
             move_uploaded_file($data['event_waiver'], "$path2/$unique_name2");
         }
-        $add_event->event_category_id = $data['event_category_id'];
+        // $add_event->event_category_id = $data['event_category_id'];
         $add_event->event_name = $data['event_name'];
         $add_event->event_start_time = $data['event_start_time'];
         $add_event->event_end_time = $data['event_end_time'];
@@ -94,10 +97,12 @@ class EventController extends Controller
         $add_event->event_logo = $unique_name;
         $add_event->event_price = $data['event_price'];
         $add_event->timezone = $data['timezone'];
-        $add_event->event_date = $data['event_date'];
+        $add_event->event_start_date = $data['event_start_date'];
+        $add_event->event_end_date = $data['event_end_date'];
         $add_event->event_location = $data['event_location'];
         $add_event->event_headline = $data['event_headline'];
         $add_event->event_description= $data['event_details'];
+        $add_event->event_schedule_details= $data['event_schedule_details'];
         $add_event->registration_start_date= $data['reg_start_date'];
         $add_event->registration_end_date= $data['reg_end_date'];
         $add_event->save();
@@ -176,7 +181,8 @@ class EventController extends Controller
         $update_event->event_location = $data['event_location'];
         $update_event->event_price = $data['event_price'];
         $update_event->event_headline = $data['event_headline'];
-        $update_event->event_date = $data['event_date'];
+        $update_event->event_start_date = $data['event_start_date'];
+        $update_event->event_end_date = $data['event_end_date'];
         $update_event->timezone = $data['timezone'];
         $update_event->event_start_time = $data['event_start_time'];
         $update_event->event_end_time = $data['event_end_time'];
@@ -192,6 +198,7 @@ class EventController extends Controller
         $update_event->registration_start_date = $data['reg_start_date'];
         $update_event->registration_end_date = $data['reg_end_date'];
         $update_event->event_description = $data['event_details'];
+        $update_event->event_schedule_details = $data['event_schedule_details'];
         $update_event->save();
         return redirect()->back()->with('success','Event Updated Successfully');
     }
@@ -275,6 +282,52 @@ class EventController extends Controller
         }
         $update_category->save();
         return redirect()->back()->with('success','Category Updated Successfully');
+    }
+
+    public function addRegistrationTypes(Request $request,$id)
+    {
+        // dd($id);
+        $event_id = $id;
+        $get_event_categories = EventRegistrationType::where('event_id',$id)->get();
+
+        if($request->isMethod('post'))
+        {
+           
+            $data = $request->all();
+            // dd($data);
+            $add_event_category = new EventRegistrationType();
+            $add_event_category->event_id = $id;
+            $add_event_category->event_category_name = $data['reg_category_name'];
+            $add_event_category->event_category_fees = $data['reg_category_fees'];
+            $add_event_category->team_type = $data['team_type'];
+            $add_event_category->team_size = $data['team_size'];
+            $add_event_category->event_category_details = $data['reg_category_details'];
+            $add_event_category->save();
+            return redirect()->back();
+
+        }
+        return view('admin.addRegistrationType',compact('event_id','get_event_categories'));
+    }
+
+    public function addEventDivisions(Request $request,$id)
+    {
+        $get_event_divisions = EventDivision::where('event_id',$id)->get();
+        //dd($get_event_divisions);
+        $event_id = $id;
+        if($request->isMethod('post'))
+        {
+           // dd('in');
+           $data = $request->all();
+           // dd($data);
+           $add_event_division = new EventDivision();
+           $add_event_division->event_id = $id;
+           $add_event_division->division_name = $data['division_name'];
+           $add_event_division->division_details = $data['event_division_details'];
+           $add_event_division->save();
+           return redirect()->back();
+        }
+        
+        return view('admin.addDivisions',compact('get_event_divisions','event_id'));
     }
 
 }

@@ -13,17 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'HomeController@home')->name('index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::any('/register-event/{id}','HomeController@registerEvent')->name('register.event'); 
+Route::any('/save-registration-type','HomeController@saveRegType')->name('save.registration.type'); 
+Route::any('/save-personal-info','HomeController@savePersonalInfo')->name('save.personal.info'); 
+Route::any('/save-team-info','HomeController@saveTeamInfo')->name('save.team.info');
+Route::any('/save-waiver','HomeController@saveWaiver')->name('save.waiver'); 
+Route::any('/save-billing-info','HomeController@saveBillingInfo')->name('save.billing.info'); 
+Route::any('/submit-final-form','HomeController@submitFinalForm')->name('submit.final.form'); 
+Route::any('/event-details/{id}','HomeController@eventDetails')->name('event.details'); 
+Route::any('/check-email-exists','HomeController@checkEmail')->name('input.email.check'); 
+Route::any('/event-leaderboard/{id}','HomeController@eventLeaderboard')->name('input.email.check');
+Route::any('/athlete-events','HomeController@myEvents')->name('athlete.events'); 
+Route::post('/user/logout','Auth\LoginController@userLogout')->name('user.logout');
 
 
 Route::prefix('admin')->group(function(){
-
     Route::get('/dashboard', 'Admin\AdminController@index')->name('admin.dashboard');
     Route::get('/login','Admin\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login','Admin\AdminLoginController@login')->name('admin.login.submit');
@@ -58,6 +70,7 @@ Route::prefix('admin')->group(function(){
     Route::any('/delete-event-category/{id}','Admin\EventController@deleteEventCategory')->name('admin.eventCategory.delete');
     Route::get('/view-cms','Admin\CmsController@viewCms')->name('admin.view.cms');
     Route::any('/edit-cms/{id}','Admin\CmsController@editCms')->name('admin.edit.cms'); 
-
+    Route::any('/add-registration-types/{id}','Admin\EventController@addRegistrationTypes')->name('admin.add.regtypes'); 
+    Route::any('/add-event-divisions/{id}','Admin\EventController@addEventDivisions')->name('admin.add.divisions'); 
 
 });

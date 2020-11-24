@@ -23,18 +23,36 @@ class RedirectIfAuthenticated
         // }
 
         // return $next($request);
-        switch ($guard) {
-            case 'admin':
-                if (Auth::guard($guard)->check()) {
-                    return redirect()->route('admin.dashboard');
-                }
-            break;
+        // switch ($guard) {
+        //     case 'admin':
+        //         if (Auth::guard($guard)->check()) {
+        //             return redirect()->route('admin.dashboard');
+        //         }
+        //     break;
 
-            default:
-                if (Auth::guard($guard)->check()) {
-                    return redirect()->intended('/');
-                }
-            break;
+        //     default:
+        //         if (Auth::guard($guard)->check()) {
+        //             return redirect()->intended('/');
+        //         }
+        //     break;
+        // }
+
+        // return $next($request);
+        // dd($guard);
+        if ($guard == "admin" && Auth::guard($guard)->check()) {
+            // dd('in');
+            return redirect()->route('admin.dashboard');
+        }
+
+        if ($guard == "judge" && Auth::guard($guard)->check()) {
+            // dd('in');
+            return redirect()->route('judge.dashboard');
+        }
+
+
+        if (Auth::guard($guard)->check()) {
+            // dd('in');
+            return redirect()->route('home');
         }
 
         return $next($request);

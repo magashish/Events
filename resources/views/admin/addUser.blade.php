@@ -32,9 +32,15 @@
                         @csrf     
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="name" class="col-sm-1 text-right control-label col-form-label">Full Name</label>
+                                <label for="first_name" class="col-sm-1 text-right control-label col-form-label">First Name</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Full Name Here">
+                                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name Here">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="last_name" class="col-sm-1 text-right control-label col-form-label">Last Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name Here">
                                 </div>
                             </div>
                             <div class="form-group row">

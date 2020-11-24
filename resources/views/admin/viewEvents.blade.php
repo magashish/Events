@@ -38,11 +38,12 @@
                             <thead>
                                 <tr>
                                     <th>Sr.No</th>
-                                    <th>Category Id</th>
+                                    <!-- <th>Category Id</th> -->
                                     <th>Event Name</th>
-                                    <th>Event Date</th>
+                                    <th>Event Start Date</th>
+                                    <th>Event End Date</th>
                                     <th>Event Location</th>
-                                    <th>Event Headline</th>
+                                    <!-- <th>Headline</th> -->
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -50,12 +51,15 @@
                                 @foreach($get_events as $key => $event)
                                 <tr>
                                     <td>{{$key + 1}}</td>
-                                    <td>{{$event->event_category_id}}</td>
+                                    <!-- <td>{{$event->event_category_id}}</td> -->
                                     <td>{{$event->event_name}}</td>
-                                    <td>{{$event->event_date}}</td>
+                                    <td>{{$event->event_start_date}}</td>
+                                    <td>{{$event->event_end_date}}</td>
                                     <td>{{$event->event_location}}</td>
-                                    <td>{{$event->event_headline}}</td>
+                                    <!-- <td>{{$event->event_headline}}</td> -->
                                     <td>
+                                        <a href={{url('/admin/add-registration-types/'.$event->id)}}><i class="fas fa-plus" id="add-reg-type" title="Add Categories"></i></a>&nbsp;&nbsp;
+                                        <a href={{url('/admin/add-event-divisions/'.$event->id)}}><i class="fas fa-plus-circle" id="add-event-division" title="Add Divisions"></i></a>&nbsp;&nbsp;
                                         <a href={{url('/admin/view-event-details/'.$event->id)}}><i class="fas fa-eye" id="view-details" title="View Details"></i></a>&nbsp;&nbsp;
                                         <a href={{url('/admin/edit-event/'.$event->id)}}><i class="far fa-edit" id="edit-event" title="Edit Event"></i></a>&nbsp;&nbsp;
                                         <a href={{url('/admin/delete-event/'.$event->id)}}><i class="fas fa-trash" id="delete-event" title="Delete Event"></i></a>&nbsp;

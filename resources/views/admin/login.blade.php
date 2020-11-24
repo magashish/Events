@@ -45,7 +45,7 @@
                         <span class="db"><img src="{{ ('assets/images/logo.png') }}" alt="logo" /></span>
                     </div>
                     <!-- Form -->
-                    <form class="form-horizontal m-t-20" id="loginform" action="{{ url('/admin/login') }}" method="post">
+                    <form class="form-horizontal m-t-20" id="loginform" action="{{ route('admin.login.submit') }}" method="post">
                         {{ csrf_field() }}
                         <div class="row p-b-30">
                             <div class="col-12">
